@@ -9,6 +9,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.datagene.daggerroomapplication.R;
 import com.datagene.daggerroomapplication.database.AppDatabase;
+import com.datagene.daggerroomapplication.database.AppRepository;
 
 import javax.inject.Singleton;
 
@@ -40,4 +41,9 @@ public class AppModule {
         return Room.databaseBuilder(application, AppDatabase.class, "database-name").build();
     }
 
+    @Singleton
+    @Provides
+    static AppRepository provideAppRepository(AppDatabase appDatabase) {
+        return new AppRepository(appDatabase);
+    }
 }
