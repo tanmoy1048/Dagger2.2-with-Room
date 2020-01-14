@@ -2,10 +2,13 @@ package com.datagene.daggerroomapplication.di;
 
 import android.app.Application;
 
+import androidx.room.Room;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.datagene.daggerroomapplication.R;
+import com.datagene.daggerroomapplication.database.AppDatabase;
 
 import javax.inject.Singleton;
 
@@ -29,6 +32,12 @@ public class AppModule {
     static RequestManager provideGlideInstance(Application application, RequestOptions requestOptions) {
         return Glide.with(application)
                 .setDefaultRequestOptions(requestOptions);
+    }
+
+    @Singleton
+    @Provides
+    static AppDatabase provideAppDatabase(Application application) {
+        return Room.databaseBuilder(application, AppDatabase.class, "database-name").build();
     }
 
 }

@@ -3,7 +3,7 @@ package com.datagene.daggerroomapplication;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.bumptech.glide.RequestManager;
+import com.datagene.daggerroomapplication.database.AppDatabase;
 
 import javax.inject.Inject;
 
@@ -11,7 +11,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 
 public class MainActivity extends DaggerAppCompatActivity {
     @Inject
-    RequestManager requestManager;
+    AppDatabase requestManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
