@@ -6,8 +6,6 @@ import android.util.Log;
 import com.datagene.daggerroomapplication.database.AppRepository;
 import com.datagene.daggerroomapplication.database.model.DemoModel;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
@@ -46,27 +44,7 @@ public class MainActivity extends DaggerAppCompatActivity {
             }
         });
 
-        appRepository.retrieveDemoModel().subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<List<DemoModel>>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(List<DemoModel> listLiveData) {
-                Log.d("zzzzz", listLiveData.get(0).value);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
+        appRepository.retrieveDemoModel().observe(this, demoModels -> Log.d("zzzzz", Integer.toString(demoModels.size())));
         Log.d("zzzzz", appRepository == null ? "injection not working" : "injection working");
     }
 }

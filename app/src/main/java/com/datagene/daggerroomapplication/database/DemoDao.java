@@ -8,7 +8,7 @@ import com.datagene.daggerroomapplication.database.model.DemoModel;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 
 @Dao
 public interface DemoDao {
@@ -19,5 +19,5 @@ public interface DemoDao {
     long insertDemo(DemoModel demo);
 
     @Query("SELECT * FROM demo_model")
-    Observable<List<DemoModel>> getDemos();
+    Flowable<List<DemoModel>> getDemos();
 }

@@ -1,5 +1,8 @@
 package com.datagene.daggerroomapplication.database;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.LiveDataReactiveStreams;
+
 import com.datagene.daggerroomapplication.database.model.DemoModel;
 
 import java.util.List;
@@ -22,7 +25,7 @@ public class AppRepository {
         return Observable.fromCallable(() -> mAppDatabase.getDemoDao().insertDemos(demoModels));
     }
 
-    public Observable<List<DemoModel>> retrieveDemoModel() {
-        return mAppDatabase.getDemoDao().getDemos();
+    public LiveData<List<DemoModel>> retrieveDemoModel() {
+        return LiveDataReactiveStreams.fromPublisher(mAppDatabase.getDemoDao().getDemos());
     }
 }
